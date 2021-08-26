@@ -1,0 +1,19 @@
+{
+  "name": "click-empire",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.3.2",
+    "gulp": "^4.0.2",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "postcss": "^8.3.6",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.2.7"
+  },
+  "dependencies": {},
+  "scripts": {
+    "dev": "TAILWIND_MODE=watch postcss build src/style.css -o dist/style.css -w",
+    "build": "postcss build src/style.css -o dist/style.css NODE_ENV=production"
+  }
+}
