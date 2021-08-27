@@ -26,7 +26,8 @@ gulp.task('ts', function() {
 task('browser-sync', () => {
   return browserSync.init({
     server: {
-      baseDir: paths.html,
+      baseDir: './',
+      index: 'index.html'
     },
     port: 3000,
     reloadOnRestart: true,
@@ -41,6 +42,7 @@ task('reload', (done) => {
 
 //watch
 task('watch', (done) => {
+  watch("./index.html", series('reload'));
   watch(paths.ts, series('ts', 'reload'));
   done();
 });
