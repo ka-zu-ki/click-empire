@@ -45,31 +45,25 @@
       </div>
       <div class="flex flex-col">
         <div class="bg-gray-400 h-24 grid grid-cols-2 gap-1 p-2 text-white">
-          <div class="bg-gray-600 flex justify-center items-center">Steven</div>
-          <div class="bg-gray-600 flex justify-center items-center">
-            25 years old
-          </div>
-          <div class="bg-gray-600 flex justify-center items-center">
-            1,882 days
-          </div>
-          <div class="bg-gray-600 flex justify-center items-center">
-            $1,234,111,902
-          </div>
+          <div id="userName" class="bg-gray-600 flex justify-center items-center"></div>
+          <div id="age" class="bg-gray-600 flex justify-center items-center"></div>
+          <div id="days" class="bg-gray-600 flex justify-center items-center"></div>
+          <div id="money" class="bg-gray-600 flex justify-center items-center"></div>
         </div>
         <div class="bg-gray-400 mt-5 p-3">
           <div id="cards" class="text-white h-72 overflow-auto">
             <div class="card grid grid-cols-4 mb-1 gap-1 bg-gray-600">
               <div class="h-20 p-1">
-                <img src="./src/img/house-1836070_640.jpg" class="h-full" />
+                <img id="itemImg" class="h-full" />
               </div>
               <div class="flex flex-col justify-center col-span-2">
-                <p class="text-3xl">House</p>
+                <p id="itemName" class="text-3xl"></p>
                 <div class="flex mt-1">
-                  <p>$20,000,000</p>
-                  <p class="text-green-400 ml-14">+$32,000 / sec</p>
+                  <p id="itemPrice"></p>
+                  <p id="itemPer" class="text-green-400 ml-14"></p>
                 </div>
               </div>
-              <div class="flex justify-center items-center text-3xl">2</div>
+              <div id="itemAmount" class="flex justify-center items-center text-3xl"></div>
             </div>
             <div class="card grid grid-cols-4 mb-1 gap-1 bg-gray-600">
               <div class="h-20 p-1">
@@ -170,6 +164,7 @@
         </div>
       </div>
     </div>
+    <script>var exports = {};</script>
     <script src="./dist/index.js"></script>
   </body>
 </html>
