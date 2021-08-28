@@ -1,8 +1,8 @@
 const gulp = require('gulp');
 const browserSync = require('browser-sync');
-const webpackStream = require("webpack-stream");
-const webpackConfig = require("./webpack.config");
-const webpack = require("webpack");
+const webpackStream = require('webpack-stream');
+const webpackConfig = require('./webpack.config');
+const webpack = require('webpack');
 
 const { watch, series, task, parallel } = require('gulp');
 
@@ -13,10 +13,12 @@ const paths = {
   ts: './src/*.ts',
 };
 
-gulp.task("webpack", (done) => {
-  webpackStream(webpackConfig, webpack)
-    .pipe(gulp.dest("./dist/"));
-  done();
+gulp.task('webpack', () => {
+  return webpackStream(webpackConfig, webpack)
+    .on('error', function (e) {
+      this.emit('end');
+    })
+    .pipe(gulp.dest('dist'));
 });
 
 // browser-sync
@@ -24,7 +26,7 @@ task('browser-sync', () => {
   return browserSync.init({
     server: {
       baseDir: './',
-      index: 'index.html'
+      index: 'index.html',
     },
     port: 3000,
     reloadOnRestart: true,
@@ -39,7 +41,7 @@ task('reload', (done) => {
 
 //watch
 task('watch', (done) => {
-  watch("./index.html", series('reload'));
+  watch('./index.html', series('reload'));
   watch(paths.ts, series('webpack', 'reload'));
   done();
 });

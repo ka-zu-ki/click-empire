@@ -11,16 +11,6 @@ class User {
 
 const User1 = new User('Steave', 25, 0, 0);
 
-const userName = document.getElementById('userName');
-const age = document.getElementById('age');
-const days = document.getElementById('days');
-const money = document.getElementById('money');
-
-userName.innerHTML = User1.name;
-age.innerHTML = `${User1.age} years old`;
-days.innerHTML = `${User1.days.toLocaleString()}`;
-money.innerHTML = `${User1.money.toLocaleString()}`;
-
 let cardContainer = `<div>`;
 items.map((item) => {
   cardContainer += `
