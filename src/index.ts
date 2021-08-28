@@ -1,4 +1,4 @@
-export {};
+import { items } from './data'
 
 class User {
   constructor(
@@ -21,27 +21,29 @@ age.innerHTML = `${User1.age} years old`;
 days.innerHTML = `${User1.days.toLocaleString()}`;
 money.innerHTML = `${User1.money.toLocaleString()}`;
 
-class Item {
-  constructor(
-    public name: string,
-    public max: number,
-    public price: number,
-    public perPrice: number,
-    public imgUrl: string,
-    public amount: number
-  ) {}
-}
+let cardContainer = `<div>`;
+items.map((item) => {
+  cardContainer += `
+  <div class="grid grid-cols-4 mb-1 gap-1 bg-gray-600">
+  <div class="h-20 p-1">
+  <img src=${item.imgUrl} class="h-full" />
+  </div>
+  <div class="flex flex-col justify-center col-span-2">
+  <p class="text-3xl">${item.name}</p>
+  <div class="flex mt-1">
+  <p id="itemPrice">$${item.price.toLocaleString()}</p>
+  <p id="itemPer" class="text-green-400 ml-14">+$${item.perPrice.toLocaleString()} / sec</p>
+  </div>
+  </div>
+  <div id="itemAmount" class="flex justify-center items-center text-3xl">
+  ${item.amount}
+  </div>
+  </div>
+  `;
+});
+cardContainer += `</div>`;
 
-const Item1 = new Item('House', 100, 30000, 30, 'https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_1280.jpg', 0)
+const cards = document.getElementById('cards');
+cards.innerHTML = cardContainer;
 
-const itemName = document.getElementById('itemName')
-const itemPrice = document.getElementById('itemPrice')
-const itemPer = document.getElementById('itemPer')
-const itemImg = document.getElementById('itemImg')
-const itemAmount = document.getElementById('itemAmount')
-
-itemName.innerHTML = `${Item1.name}`
-itemPrice.innerHTML = `$${Item1.price.toLocaleString()}`
-itemPer.innerHTML = `+$${Item1.perPrice.toLocaleString()} / sec`
-itemImg.src = `${Item1.imgUrl}`
-itemAmount.innerHTML = `${Item1.amount}`
+// export default Item;

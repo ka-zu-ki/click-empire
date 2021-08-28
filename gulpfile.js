@@ -1,8 +1,10 @@
 const gulp = require('gulp');
-const typescript = require('gulp-typescript');
 const browserSync = require('browser-sync');
+const webpackStream = require("webpack-stream");
+const webpackConfig = require("./webpack.config");
+const webpack = require("webpack");
 
-const { watch, series, task, src, dest, parallel } = require('gulp');
+const { watch, series, task, parallel } = require('gulp');
 
 const paths = {
   root: './dist/',
@@ -11,15 +13,10 @@ const paths = {
   ts: './src/*.ts',
 };
 
-const typeScriptProject = typescript.createProject({
-  declaration: false
-});
-
-// typescript
-gulp.task('ts', function() {
-  return gulp.src(paths.ts) // 対象ファイル(!は除外指定)
-      .pipe(typeScriptProject())
-      .pipe(gulp.dest(paths.js)); // 出力先
+gulp.task("webpack", (done) => {
+  webpackStream(webpackConfig, webpack)
+    .pipe(gulp.dest("./dist/"));
+  done();
 });
 
 // browser-sync
@@ -43,8 +40,8 @@ task('reload', (done) => {
 //watch
 task('watch', (done) => {
   watch("./index.html", series('reload'));
-  watch(paths.ts, series('ts', 'reload'));
+  watch(paths.ts, series('webpack', 'reload'));
   done();
 });
 
-task('default', parallel('ts', 'watch', 'browser-sync'));
+task('default', parallel('webpack', 'watch', 'browser-sync'));
