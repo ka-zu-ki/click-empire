@@ -1,14 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Click Empire</title>
-  <link rel="stylesheet" href="./dist/style.css">
-</head>
-<body>
-  <h1>test</h1>
-  <script src="./dist/index.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Click Empire</title>
+    <link rel="stylesheet" href="./dist/style.css" />
+    <script
+      defer
+      src="node_modules/@fortawesome/fontawesome-free/js/brands.min.js"
+    ></script>
+    <script
+      defer
+      src="/node_modules/@fortawesome/fontawesome-free/js/solid.min.js"
+    ></script>
+    <script
+      defer
+      src="/node_modules/@fortawesome/fontawesome-free/js/fontawesome.min.js"
+    ></script>
+  </head>
+  <body>
+    <div
+      class="bg-gray-600 h-screen w-screen mt-5 mb-5 p-5 grid grid-cols-2 gap-3"
+    >
+      <div class="bg-gray-400 p-3">
+        <div
+          class="
+            bg-gray-600
+            h-20
+            flex flex-col
+            place-content-center place-items-center
+          "
+        >
+          <div id="title" class="text-white text-xl">1,102 Burgers</div>
+          <div id="mini-title" class="text-white text-base">$25 per second</div>
+        </div>
+        <div class="h-72 flex flex-col items-center mt-10">
+          <img
+            id="img"
+            src="./src/img/hamburger-31775_1280.png"
+            class="h-full"
+          />
+        </div>
+      </div>
+      <div class="flex flex-col">
+        <div class="bg-gray-400 h-24 grid grid-cols-2 gap-1 p-2 text-white">
+          <div class="bg-gray-600 flex justify-center items-center">Steven</div>
+          <div class="bg-gray-600 flex justify-center items-center">
+            25 years old
+          </div>
+          <div class="bg-gray-600 flex justify-center items-center">
+            1,882 days
+          </div>
+          <div class="bg-gray-600 flex justify-center items-center">
+            $1,234,111,902
+          </div>
+        </div>
+        <div class="bg-gray-400 mt-5 p-3">
+          <div id="cards" class="text-white h-72 overflow-auto">
+            <div class="card grid grid-cols-4 mb-1 gap-1 bg-gray-600">
+              <div class="h-20 p-1">
+                <img src="./src/img/house-1836070_640.jpg" class="h-full" />
+              </div>
+              <div class="flex flex-col justify-center col-span-2">
+                <p class="text-3xl">House</p>
+                <div class="flex mt-1">
+                  <p>$20,000,000</p>
+                  <p class="text-green-400 ml-14">+$32,000 / sec</p>
+                </div>
+              </div>
+              <div class="flex justify-center items-center text-3xl">2</div>
+            </div>
+            <div class="card grid grid-cols-4 mb-1 gap-1 bg-gray-600">
+              <div class="h-20 p-1">
+                <img src="./src/img/house-1836070_640.jpg" class="h-full" />
+              </div>
+              <div class="flex flex-col justify-center col-span-2">
+                <p class="text-3xl">House</p>
+                <div class="flex mt-1">
+                  <p>$20,000,000</p>
+                  <p class="text-green-400 ml-14">+$32,000 / sec</p>
+                </div>
+              </div>
+              <div class="flex justify-center items-center text-3xl">2</div>
+            </div>
+            <div class="card grid grid-cols-4 mb-1 gap-1 bg-gray-600">
+              <div class="h-20 p-1">
+                <img src="./src/img/house-1836070_640.jpg" class="h-full" />
+              </div>
+              <div class="flex flex-col justify-center col-span-2">
+                <p class="text-3xl">House</p>
+                <div class="flex mt-1">
+                  <p>$20,000,000</p>
+                  <p class="text-green-400 ml-14">+$32,000 / sec</p>
+                </div>
+              </div>
+              <div class="flex justify-center items-center text-3xl">2</div>
+            </div>
+            <div class="card grid grid-cols-4 mb-1 gap-1 bg-gray-600">
+              <div class="h-20 p-1">
+                <img src="./src/img/house-1836070_640.jpg" class="h-full" />
+              </div>
+              <div class="flex flex-col justify-center col-span-2">
+                <p class="text-3xl">House</p>
+                <div class="flex mt-1">
+                  <p>$20,000,000</p>
+                  <p class="text-green-400 ml-14">+$32,000 / sec</p>
+                </div>
+              </div>
+              <div class="flex justify-center items-center text-3xl">2</div>
+            </div>
+          </div>
+          
+          <div id="active" class="h-72 bg-gray-600 text-white p-3 hidden">
+            <div class="flex justify-between items-center">
+              <div>
+                <h2 class="text-2xl">House</h2>
+                <p>Max Purchases: 100</p>
+                <p>Price: $20,000,000</p>
+                <p>Get 32,000 extra yen per second</p>
+              </div>
+              <div class="w-2/4 h-28 flex justify-center">
+                <img
+                  id="img"
+                  src="./src/img/hamburger-31775_1280.png"
+                  class="h-full"
+                />
+              </div>
+            </div>
+            <p class="mt-5">How Many would you like to purchase?</p>
+            <form action="post">
+              <input type="text" class="w-full rounded">
+            </form>
+            <p class="mt-3">Total: $100,000,000</p>
+            <div class="grid grid-cols-2 gap-2 mt-3">
+              <div class="bg-white text-blue-500 w-full h-10 flex justify-center items-center">Go Back</div>
+              <div class="bg-blue-700 text-white w-full h-10 flex justify-center items-center">Purchase</div>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-end mt-3">
+          <div
+            class="
+              text-3xl text-white
+              border border-white
+              w-12
+              h-12
+              flex
+              justify-center
+              items-center
+              mr-3
+            "
+          >
+            <i class="fas fa-redo-alt"></i>
+          </div>
+          <div
+            class="
+              text-3xl text-white
+              border border-white
+              w-12
+              h-12
+              flex
+              justify-center
+              items-center
+            "
+          >
+            <i class="fas fa-save"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./dist/index.js"></script>
+  </body>
 </html>
