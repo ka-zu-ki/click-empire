@@ -46,7 +46,8 @@ export default class Controller {
 
   static clickBurger(user: User) {
     user.burgers += 1;
-    View.updateRender(user);
+    user.money += 25
+    View.updateClickBurger(user);
   }
 
   static save(user: User) {

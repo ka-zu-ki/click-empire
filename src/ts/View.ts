@@ -102,9 +102,13 @@ export default class View {
     });
   }
 
-  static updateRender(user: User) {
+  static updateClickBurger(user: User) {
     const burger = document.getElementById('burger');
+    const money = document.getElementById('money');
+
     burger.innerHTML = '';
     burger.innerHTML = `${user.burgers} Burgers`;
+    money.innerHTML = ''
+    money.innerHTML = `${user.money.toLocaleString()}`
   }
 }
