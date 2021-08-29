@@ -1,23 +1,38 @@
-import User from './User'
-import View from './View'
+import View from './View';
 
 export default class Controller {
   static startGame() {
-    const newGameBtn = document.getElementById('newGame');
+    const start = document.getElementById('startGameBtn');
+    const login = document.getElementById('loginBtn');
     const form = document.getElementById('form');
     const mainPage = document.getElementById('mainPage');
 
-    newGameBtn.addEventListener('click', (e) => {
-      const userNameInput = document.getElementById('userName').value;
-      if (userNameInput.length != 0) e.preventDefault();
-      else return;
-
-      form.classList.add('hidden');
-      mainPage.classList.remove('hidden');
-      localStorage.setItem('userName', userNameInput);
-      const userData = localStorage.getItem('userName');
-      console.log(userData)
-      View.renderMainPage(new User(userData, 25, 0, 50000))
+    start.addEventListener('click', (e) => {
+      const userNameInput = (<HTMLInputElement>(
+        document.getElementById('userName')
+      )).value;
+      if (userNameInput.length != 0) {
+        e.preventDefault();
+        form.classList.add('hidden');
+        mainPage.classList.remove('hidden');
+        localStorage.setItem('userName', userNameInput);
+        const data = localStorage.getItem('userName');
+        View.renderMainPage(data);
+      }
     });
+
+    login.addEventListener('click', (e) => {
+      const userNameInput = (<HTMLInputElement>(
+        document.getElementById('userName')
+      )).value;
+      if (userNameInput.length != 0 && localStorage.getItem('userName') == userNameInput) {
+        e.preventDefault();
+        form.classList.add('hidden');
+        mainPage.classList.remove('hidden');
+        localStorage.setItem('userName', userNameInput);
+        const data = localStorage.getItem('userName');
+        View.renderMainPage(data);
+      }
+    })
   }
 }

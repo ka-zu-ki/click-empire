@@ -6,3 +6,4 @@ export default class User {
     public money: number
   ) {}
 }
+

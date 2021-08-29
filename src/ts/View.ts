@@ -1,14 +1,14 @@
-import User from './User'
+import User from './User';
 import { Item, items } from './Item';
 
 export default class View {
-  static renderMainPage(user: User) {
+  static renderMainPage(data) {
     // cards
-const cards = document.getElementById('cards');
-let cardContainer = `<div>`;
+    const cards = document.getElementById('cards');
+    let cardContainer = `<div>`;
 
-items.map((item, index) => {
-  cardContainer += `
+    items.map((item, index) => {
+      cardContainer += `
   <div data-card=${index} id="card" class="grid grid-cols-4 mb-1 gap-1 bg-gray-600">
     <div class="h-20 p-1">
       <img src=${item.imgUrl} class="h-full" />
@@ -25,22 +25,22 @@ items.map((item, index) => {
     </div>
   </div>
   `;
-});
+    });
 
-cardContainer += `</div>`;
+    cardContainer += `</div>`;
 
-cards.innerHTML = cardContainer;
+    cards.innerHTML = cardContainer;
 
-// cardInfo
-const cardInfo = document.getElementById('cardInfo');
-const cardList = document.querySelectorAll('#card');
+    // cardInfo
+    const cardInfo = document.getElementById('cardInfo');
+    const cardList = document.querySelectorAll('#card');
 
-cardList.forEach((card, i) => {
-  card.addEventListener('click', () => {
-    cards.classList.add('hidden');
-    cardInfo.classList.remove('hidden');
+    cardList.forEach((card, i) => {
+      card.addEventListener('click', () => {
+        cards.classList.add('hidden');
+        cardInfo.classList.remove('hidden');
 
-    let cardInfoContainer = `
+        let cardInfoContainer = `
     <div>
       <div class="flex justify-between items-center">
         <div>
@@ -68,16 +68,17 @@ cardList.forEach((card, i) => {
       </div>
       </div>
     `;
-    cardInfo.innerHTML = cardInfoContainer;
+        cardInfo.innerHTML = cardInfoContainer;
 
-    const btnBack = document.getElementById('btnBack');
-    btnBack.addEventListener('click', () => {
-      cardInfo.classList.add('hidden');
-      cards.classList.remove('hidden');
+        const btnBack = document.getElementById('btnBack');
+        btnBack.addEventListener('click', () => {
+          cardInfo.classList.add('hidden');
+          cards.classList.remove('hidden');
+        });
+      });
     });
-  });
-});
 
+    const user = new User(data, 25, 0, 50000);
 
     const userName = document.getElementById('name');
     const age = document.getElementById('age');
@@ -88,5 +89,5 @@ cardList.forEach((card, i) => {
     age.innerHTML = `${user.age} years old`;
     days.innerHTML = `${user.days.toLocaleString()}`;
     money.innerHTML = `${user.money.toLocaleString()}`;
-  };
+  }
 }
