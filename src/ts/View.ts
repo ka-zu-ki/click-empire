@@ -75,7 +75,7 @@ export default class View {
     });
 
     // userInfo
-    const user: User = JSON.parse(data)
+    const user: User = JSON.parse(data);
     const userName = document.getElementById('name');
     const age = document.getElementById('age');
     const days = document.getElementById('days');
@@ -87,18 +87,24 @@ export default class View {
     money.innerHTML = `${user.money.toLocaleString()}`;
 
     // burgerInfo
-    const img = document.getElementById('img')
-    const burger = document.getElementById('burger')
-    burger.innerHTML = `${user.burgers} Burgers`
+    const img = document.getElementById('img');
+    const burger = document.getElementById('burger');
+    burger.innerHTML = `${user.burgers} Burgers`;
 
     img.addEventListener('click', () => {
-      Controller.clickBurger(user)
-    })
+      Controller.clickBurger(user);
+    });
+
+    // save
+    const saveIcon = document.getElementById('save');
+    saveIcon.addEventListener('click', () => {
+      Controller.save(user)
+    });
   }
 
   static updateRender(user: User) {
-    const burger = document.getElementById('burger')
-    burger.innerHTML = ""
-    burger.innerHTML = `${user.burgers} Burgers`
+    const burger = document.getElementById('burger');
+    burger.innerHTML = '';
+    burger.innerHTML = `${user.burgers} Burgers`;
   }
 }

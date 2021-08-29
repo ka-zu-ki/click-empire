@@ -19,8 +19,7 @@ export default class Controller {
         mainPage.classList.remove('hidden');
 
         const userData = new User(userNameInput, 25, 0, 50000, 0);
-        const jsonEncoded = JSON.stringify(userData);
-        localStorage.setItem('userData', jsonEncoded);
+        localStorage.setItem('userData', JSON.stringify(userData));
         const data = localStorage.getItem('userData');
         View.initialRender(data);
       }
@@ -48,5 +47,10 @@ export default class Controller {
   static clickBurger(user: User) {
     user.burgers += 1;
     View.updateRender(user);
+  }
+
+  static save(user: User) {
+    localStorage.setItem('userData', JSON.stringify(user))
+    console.log(localStorage.getItem('userData'))
   }
 }
