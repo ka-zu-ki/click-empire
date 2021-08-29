@@ -5,7 +5,8 @@ class Item {
     public price: number,
     public perPrice: number,
     public imgUrl: string,
-    public amount: number
+    public amount: number,
+    public purchaseAmount: number
   ) {}
 }
 
@@ -16,6 +17,7 @@ const items: Item[] = [
     30000,
     30,
     'https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_1280.jpg',
+    0,
     0
   ),
   new Item(
@@ -24,6 +26,7 @@ const items: Item[] = [
     15000,
     25,
     'https://cdn.pixabay.com/photo/2017/05/24/19/27/bbq-2341356_1280.jpg',
+    0,
     0
   ),
   new Item(
@@ -32,6 +35,7 @@ const items: Item[] = [
     30000,
     0.1,
     'https://cdn.pixabay.com/photo/2017/10/26/17/40/dollar-2891817_1280.jpg',
+    0,
     0
   ),
   new Item(
@@ -40,6 +44,7 @@ const items: Item[] = [
     30000,
     30,
     'https://cdn.pixabay.com/photo/2016/07/26/16/12/kaffeerad-1543158_1280.jpg',
+    0,
     0
   ),
   new Item(
@@ -48,6 +53,7 @@ const items: Item[] = [
     250000000,
     500000,
     'https://cdn.pixabay.com/photo/2017/07/03/21/35/house-2469067_1280.jpg',
+    0,
     0
   ),
 ];

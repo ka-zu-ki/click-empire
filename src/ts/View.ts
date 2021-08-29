@@ -3,13 +3,13 @@ import User from './User';
 import { items } from './Item';
 
 export default class View {
-  static initialRender(data) {
+  static initialRender(data?) {
     // cards
     const cards = document.getElementById('cards');
     let cardContainer = `<div>`;
-    items.map((item, index) => {
+    items.map((item) => {
       cardContainer += `
-        <div data-card=${index} id="card" class="grid grid-cols-4 mb-1 gap-1 bg-gray-600">
+        <div id="card" class="grid gap grid-cols-4 mb-1 gap-1 bg-gray-600">
           <div class="h-20 p-1">
             <img src=${item.imgUrl} class="h-full" />
           </div>
@@ -55,7 +55,7 @@ export default class View {
             </div>
             <p class="mt-5">How Many would you like to purchase?</p>
             <form action="post">
-              <input type="text" class="w-full rounded">
+              <input type="number" class="text-black w-full rounded" value="0" min="0" max="100">
             </form>
             <p class="mt-3 flex justify-end">Total: $${items[i].amount}</p>
             <div class="grid grid-cols-2 gap-2 mt-3">

@@ -1,5 +1,6 @@
 import View from './View';
 import User from './User';
+import { items } from './Item';
 
 export default class Controller {
   static startGame() {
@@ -18,7 +19,7 @@ export default class Controller {
         form.classList.add('hidden');
         mainPage.classList.remove('hidden');
 
-        const userData = new User(userNameInput, 25, 0, 50000, 0);
+        const userData = new User(userNameInput, 25, 0, 50000, 0, items);
         localStorage.setItem('userData', JSON.stringify(userData));
         const data = localStorage.getItem('userData');
         View.initialRender(data);
