@@ -10,7 +10,7 @@ const paths = {
   root: './dist/',
   html: './',
   js: './dist',
-  ts: './src/*.ts',
+  ts: './src/ts/*.ts',
 };
 
 gulp.task('webpack', () => {
