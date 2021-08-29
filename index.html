@@ -20,8 +20,34 @@
     ></script>
   </head>
   <body>
+    <div id="form" class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-md w-full space-y-8">
+        <div>
+          <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Welcome Click Empire Game
+          </h2>
+        </div>
+        <form class="mt-8 space-y-6" action="#" method="POST">
+          <div class="rounded-md shadow-sm -space-y-px">
+            <div>
+              <label for="user-name" class="sr-only">User name</label>
+              <input id="userName" name="userName" type="text" autocomplete="name" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="User name">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <button id="newGame" type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              New Game
+            </button>
+            <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
     <div
-      class="bg-gray-600 h-50 w-screen mt-5 mb-5 p-5 grid grid-cols-2 gap-3"
+      id="mainPage" class="bg-gray-600 h-50 w-screen mt-5 mb-5 p-5 grid grid-cols-2 gap-3 hidden"
     >
       <div class="bg-gray-400 p-3">
         <div
@@ -45,54 +71,15 @@
       </div>
       <div class="flex flex-col">
         <div class="bg-gray-400 h-24 grid grid-cols-2 gap-1 p-2 text-white">
-          <div id="userName" class="bg-gray-600 flex justify-center items-center"></div>
+          <div id="name" class="bg-gray-600 flex justify-center items-center"></div>
           <div id="age" class="bg-gray-600 flex justify-center items-center"></div>
           <div id="days" class="bg-gray-600 flex justify-center items-center"></div>
           <div id="money" class="bg-gray-600 flex justify-center items-center"></div>
         </div>
-        <div class="bg-gray-400 mt-5 p-3">
-          <div id="cards" class="text-white h-72 overflow-auto">
-            <!-- <div class="grid grid-cols-4 mb-1 gap-1 bg-gray-600">
-              <div class="h-20 p-1">
-                <img id="itemImg" class="h-full" />
-              </div>
-              <div class="flex flex-col justify-center col-span-2">
-                <p id="itemName" class="text-3xl"></p>
-                <div class="flex mt-1">
-                  <p id="itemPrice"></p>
-                  <p id="itemPer" class="text-green-400 ml-14"></p>
-                </div>
-              </div>
-              <div id="itemAmount" class="flex justify-center items-center text-3xl"></div>
-            </div> -->
-          </div>
+        <div id="cardContainer" class="bg-gray-400 mt-5 p-3">
+          <div id="cards" class="text-white h-72 overflow-auto"></div>
           
-          <div id="active" class="h-72 bg-gray-600 text-white p-3 hidden">
-            <div class="flex justify-between items-center">
-              <div>
-                <h2 class="text-2xl">House</h2>
-                <p>Max Purchases: 100</p>
-                <p>Price: $20,000,000</p>
-                <p>Get 32,000 extra yen per second</p>
-              </div>
-              <div class="w-2/4 h-28 flex justify-center">
-                <img
-                  id="img"
-                  src="./src/img/hamburger-31775_1280.png"
-                  class="h-full"
-                />
-              </div>
-            </div>
-            <p class="mt-5">How Many would you like to purchase?</p>
-            <form action="post">
-              <input type="text" class="w-full rounded">
-            </form>
-            <p class="mt-3">Total: $100,000,000</p>
-            <div class="grid grid-cols-2 gap-2 mt-3">
-              <div class="bg-white text-blue-500 w-full h-10 flex justify-center items-center">Go Back</div>
-              <div class="bg-blue-700 text-white w-full h-10 flex justify-center items-center">Purchase</div>
-            </div>
-          </div>
+          <div id="cardInfo" class="h-72 bg-gray-600 text-white p-3 hidden"></div>
         </div>
         <div class="flex justify-end mt-3">
           <div
