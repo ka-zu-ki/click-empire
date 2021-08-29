@@ -1,4 +1,13 @@
-import { Item } from './class';
+class Item {
+  constructor(
+    public name: string,
+    public max: number,
+    public price: number,
+    public perPrice: number,
+    public imgUrl: string,
+    public amount: number
+  ) {}
+}
 
 const items: Item[] = [
   new Item(
@@ -43,4 +52,4 @@ const items: Item[] = [
   ),
 ];
 
-export { items } 
+export { Item, items };
