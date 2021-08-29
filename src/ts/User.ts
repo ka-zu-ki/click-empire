@@ -3,7 +3,7 @@ export default class User {
     public name: string,
     public age: number,
     public days: number,
-    public money: number
+    public money: number,
+    public burgers: number
   ) {}
 }
-

@@ -1,4 +1,5 @@
 import View from './View';
+import User from './User';
 
 export default class Controller {
   static startGame() {
@@ -11,13 +12,17 @@ export default class Controller {
       const userNameInput = (<HTMLInputElement>(
         document.getElementById('userName')
       )).value;
+
       if (userNameInput.length != 0) {
         e.preventDefault();
         form.classList.add('hidden');
         mainPage.classList.remove('hidden');
-        localStorage.setItem('userName', userNameInput);
-        const data = localStorage.getItem('userName');
-        View.renderMainPage(data);
+
+        const userData = new User(userNameInput, 25, 0, 50000, 0);
+        const jsonEncoded = JSON.stringify(userData);
+        localStorage.setItem('userData', jsonEncoded);
+        const data = localStorage.getItem('userData');
+        View.initialRender(data);
       }
     });
 
@@ -25,14 +30,23 @@ export default class Controller {
       const userNameInput = (<HTMLInputElement>(
         document.getElementById('userName')
       )).value;
-      if (userNameInput.length != 0 && localStorage.getItem('userName') == userNameInput) {
+      const data = localStorage.getItem('userData');
+      const user = JSON.parse(data);
+
+      if (userNameInput.length != 0 && userNameInput == user.name) {
         e.preventDefault();
         form.classList.add('hidden');
         mainPage.classList.remove('hidden');
-        localStorage.setItem('userName', userNameInput);
-        const data = localStorage.getItem('userName');
-        View.renderMainPage(data);
+
+        View.initialRender(data);
+      } else {
+        window.alert('名前が違います');
       }
-    })
+    });
+  }
+
+  static clickBurger(user: User) {
+    user.burgers += 1;
+    View.updateRender(user);
   }
 }
