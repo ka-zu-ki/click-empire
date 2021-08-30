@@ -47,12 +47,20 @@ export default class Controller {
 
   static clickBurger(user: User) {
     user.burgers += 1;
-    user.money += 25
-    View.updateClickBurger(user);
+    user.money += 25;
+    View.updateBurger(user);
+  }
+
+  static clickCard(card, i) {
+    View.renderCardInfo(card, i)
+  }
+
+  static changeSumPrice(i: number) {
+    View.updateSumPrice(i)
   }
 
   static save(user: User) {
-    localStorage.setItem('userData', JSON.stringify(user))
-    console.log(localStorage.getItem('userData'))
+    localStorage.setItem('userData', JSON.stringify(user));
+    console.log(localStorage.getItem('userData'));
   }
 }

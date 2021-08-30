@@ -5,8 +5,8 @@ class Item {
     public price: number,
     public perPrice: number,
     public imgUrl: string,
-    public amount: number,
-    public purchaseAmount: number
+    public purchaseAmount: number,
+    public sumPrice: number
   ) {}
 }
 

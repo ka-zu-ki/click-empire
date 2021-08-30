@@ -1,11 +1,11 @@
 import Controller from './Controller';
 import User from './User';
 import { items } from './Item';
+import { cards, cardInfo } from './config';
 
 export default class View {
-  static initialRender(data?) {
+  static initialRender(data: string) {
     // cards
-    const cards = document.getElementById('cards');
     let cardContainer = `<div>`;
     items.map((item) => {
       cardContainer += `
@@ -21,7 +21,7 @@ export default class View {
             </div>
           </div>
           <div id="itemAmount" class="flex justify-center items-center text-3xl">
-            ${item.amount}
+            ${item.purchaseAmount}
           </div>
         </div>
       `;
@@ -29,48 +29,10 @@ export default class View {
     cardContainer += `</div>`;
     cards.innerHTML = cardContainer;
 
-    // cardInfo
-    const cardInfo = document.getElementById('cardInfo');
     const cardList = document.querySelectorAll('#card');
     cardList.forEach((card, i) => {
       card.addEventListener('click', () => {
-        cards.classList.add('hidden');
-        cardInfo.classList.remove('hidden');
-        let cardInfoContainer = `
-          <div>
-            <div class="flex justify-between items-center">
-              <div>
-                <h2 class="text-2xl">${items[i].name}</h2>
-                <p>Max Purchases: ${items[i].max}</p>
-                <p>Price: $${items[i].price}</p>
-                <p>Get ${items[i].perPrice} extra yen per second</p>
-              </div>
-              <div class="w-2/4 h-28 flex justify-center">
-                <img
-                  id="img"
-                  src=${items[i].imgUrl}
-                  class="h-full"
-                />
-              </div>
-            </div>
-            <p class="mt-5">How Many would you like to purchase?</p>
-            <form action="post">
-              <input type="number" class="text-black w-full rounded" value="0" min="0" max="100">
-            </form>
-            <p class="mt-3 flex justify-end">Total: $${items[i].amount}</p>
-            <div class="grid grid-cols-2 gap-2 mt-3">
-              <div id="btnBack" class="bg-white text-blue-500 w-full h-10 flex justify-center items-center">Go Back</div>
-              <div id="btnBuy" class="bg-blue-700 text-white w-full h-10 flex justify-center items-center">Purchase</div>
-            </div>
-          </div>
-        `;
-        cardInfo.innerHTML = cardInfoContainer;
-
-        const btnBack = document.getElementById('btnBack');
-        btnBack.addEventListener('click', () => {
-          cardInfo.classList.add('hidden');
-          cards.classList.remove('hidden');
-        });
+        Controller.clickCard(card, i);
       });
     });
 
@@ -98,17 +60,72 @@ export default class View {
     // save
     const saveIcon = document.getElementById('save');
     saveIcon.addEventListener('click', () => {
-      Controller.save(user)
+      Controller.save(user);
     });
   }
 
-  static updateClickBurger(user: User) {
+  static renderCardInfo(card, i) {
+    // cardInfo
+    cards.classList.add('hidden');
+    cardInfo.classList.remove('hidden');
+    cardInfo.innerHTML = `
+      <div>
+        <div class="flex justify-between items-center">
+          <div>
+            <h2 class="text-2xl">${items[i].name}</h2>
+            <p>Max Purchases: ${items[i].max}</p>
+            <p>Price: $${items[i].price}</p>
+            <p>Get ${items[i].perPrice} extra yen per second</p>
+          </div>
+          <div class="w-2/4 h-28 flex justify-center">
+            <img
+              id="img"
+              src=${items[i].imgUrl}
+              class="h-full"
+            />
+          </div>
+        </div>
+        <p class="mt-5">How Many would you like to purchase?</p>
+        <form action="post">
+          <input type="number" id="amount" class="text-black w-full rounded" value="0" min="0" max="${items[i].max}">
+        </form>
+        <p id="sumPrice" class="mt-3 flex justify-end">Total: ${items[i].sumPrice.toLocaleString()}</p>
+        <div class="grid grid-cols-2 gap-2 mt-3">
+          <div id="btnBack" class="bg-white text-blue-500 w-full h-10 flex justify-center items-center">Go Back</div>
+          <div id="btnBuy" class="bg-blue-700 text-white w-full h-10 flex justify-center items-center">Purchase</div>
+        </div>
+      </div>
+    `;
+
+    const amountElement = cardInfo.querySelector('#amount');
+    amountElement.addEventListener('change', () => {
+      Controller.changeSumPrice(i)
+    })
+
+    const btnBack = document.getElementById('btnBack');
+    btnBack.addEventListener('click', () => {
+      cardInfo.classList.add('hidden');
+      cards.classList.remove('hidden');
+    });
+  }
+
+  static updateSumPrice(i: number) {
+    const amountElement = cardInfo.querySelector('#amount');
+    const amountValue = Number((<HTMLInputElement>amountElement).value);
+    const sumPrice = cardInfo.querySelector('#sumPrice');
+    amountElement.addEventListener('change', () => {
+      items[i].sumPrice += amountValue * items[i].price;
+      sumPrice.innerHTML = `Total: $${items[i].sumPrice.toLocaleString()}`;
+    });
+  }
+
+  static updateBurger(user: User) {
     const burger = document.getElementById('burger');
     const money = document.getElementById('money');
 
     burger.innerHTML = '';
     burger.innerHTML = `${user.burgers} Burgers`;
-    money.innerHTML = ''
-    money.innerHTML = `${user.money.toLocaleString()}`
+    money.innerHTML = '';
+    money.innerHTML = `${user.money.toLocaleString()}`;
   }
 }
