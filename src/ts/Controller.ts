@@ -49,20 +49,21 @@ export default class Controller {
     View.updateBurger(user);
   }
 
-  static clickCard(card, i) {
+  static clickCard(card: Element, i: number) {
     View.renderCardInfo(card, i);
   }
 
-  static changeSumPrice(i: number) {
+  static changeSumPrice(i: number, count: number) {
+    items[i].sumPrice = (count * items[i].price);
+    items[i].purchaseAmount = count
     View.updateSumPrice(i);
   }
 
-  static updateUserInfo(items, i) {
-    // user.money -=
+  static updateUserInfo(i: number) {
+    user.money += items[i].sumPrice
   }
 
   static save(user: User) {
     localStorage.setItem('userData', JSON.stringify(user));
-    console.log(localStorage.getItem('userData'));
   }
 }

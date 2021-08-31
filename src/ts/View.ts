@@ -98,31 +98,26 @@ export default class View {
 
     const amountElement = cardInfo.querySelector('#amount');
     amountElement.addEventListener('change', () => {
-      Controller.changeSumPrice(i)
+      const count = Number((<HTMLInputElement>amountElement).value);
+      Controller.changeSumPrice(i, count)
     })
 
     const btnBack = document.getElementById('btnBack');
     btnBack.addEventListener('click', () => {
-      cardInfo.classList.add('hidden');
-      cards.classList.remove('hidden');
+      this.toggleHidden(cardInfo, cards)
     });
 
     const btnBuy = document.getElementById('btnBuy');
     btnBuy.addEventListener('click', () => {
-      cardInfo.classList.add('hidden');
-      cards.classList.remove('hidden');
-      Controller.updateUserInfo(items, i)
+      this.toggleHidden(cardInfo, cards)
+      Controller.updateUserInfo(i)
+      this.initialRender(user)
     })
   }
 
   static updateSumPrice(i: number) {
-    const amountElement = cardInfo.querySelector('#amount');
-    const amountValue = Number((<HTMLInputElement>amountElement).value);
     const sumPrice = cardInfo.querySelector('#sumPrice');
-    amountElement.addEventListener('change', () => {
-      items[i].sumPrice += amountValue * items[i].price;
-      sumPrice.innerHTML = `Total: $${items[i].sumPrice.toLocaleString()}`;
-    });
+    sumPrice.innerHTML = `Total: $${items[i].sumPrice.toLocaleString()}`;
   }
 
   static updateBurger(user: User) {
