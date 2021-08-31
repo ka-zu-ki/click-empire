@@ -1,10 +1,10 @@
 import Controller from './Controller';
 import User from './User';
 import { items } from './Item';
-import { cards, cardInfo } from './config';
+import { cards, cardInfo, user } from './config';
 
 export default class View {
-  static initialRender(data: string) {
+  static initialRender(user: User) {
     // cards
     let cardContainer = `<div>`;
     items.map((item) => {
@@ -37,7 +37,6 @@ export default class View {
     });
 
     // userInfo
-    const user: User = JSON.parse(data);
     const userName = document.getElementById('name');
     const age = document.getElementById('age');
     const days = document.getElementById('days');
@@ -107,6 +106,13 @@ export default class View {
       cardInfo.classList.add('hidden');
       cards.classList.remove('hidden');
     });
+
+    const btnBuy = document.getElementById('btnBuy');
+    btnBuy.addEventListener('click', () => {
+      cardInfo.classList.add('hidden');
+      cards.classList.remove('hidden');
+      Controller.updateUserInfo(items, i)
+    })
   }
 
   static updateSumPrice(i: number) {
@@ -127,5 +133,10 @@ export default class View {
     burger.innerHTML = `${user.burgers} Burgers`;
     money.innerHTML = '';
     money.innerHTML = `${user.money.toLocaleString()}`;
+  }
+
+  static toggleHidden(add: HTMLElement, remove: HTMLElement) {
+    add.classList.add('hidden');
+    remove.classList.remove('hidden');
   }
 }

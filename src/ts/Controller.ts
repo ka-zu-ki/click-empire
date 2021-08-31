@@ -1,62 +1,64 @@
 import View from './View';
+
 import User from './User';
 import { items } from './Item';
 
+import { start, login, form, mainPage, user } from './config';
+
 export default class Controller {
   static startGame() {
-    const start = document.getElementById('startGameBtn');
-    const login = document.getElementById('loginBtn');
-    const form = document.getElementById('form');
-    const mainPage = document.getElementById('mainPage');
-
     start.addEventListener('click', (e) => {
-      const userNameInput = (<HTMLInputElement>(
-        document.getElementById('userName')
-      )).value;
-
-      if (userNameInput.length != 0) {
-        e.preventDefault();
-        form.classList.add('hidden');
-        mainPage.classList.remove('hidden');
-
-        const userData = new User(userNameInput, 25, 0, 50000, 0, items);
-        localStorage.setItem('userData', JSON.stringify(userData));
-        const data = localStorage.getItem('userData');
-        View.initialRender(data);
-      }
+      this.signIn(e);
     });
 
     login.addEventListener('click', (e) => {
-      const userNameInput = (<HTMLInputElement>(
-        document.getElementById('userName')
-      )).value;
-      const data = localStorage.getItem('userData');
-      const user = JSON.parse(data);
-
-      if (userNameInput.length != 0 && userNameInput == user.name) {
-        e.preventDefault();
-        form.classList.add('hidden');
-        mainPage.classList.remove('hidden');
-
-        View.initialRender(data);
-      } else {
-        window.alert('名前が違います');
-      }
+      this.logIn(user, e);
     });
   }
 
-  static clickBurger(user: User) {
+  static signIn(e: MouseEvent) {
+    const userNameInput = (<HTMLInputElement>(
+      document.getElementById('userName')
+    )).value;
+
+    if (userNameInput.length != 0) {
+      e.preventDefault();
+      View.toggleHidden(form, mainPage);
+
+      const userData = new User(userNameInput, 25, 0, 50000, 0, items);
+      localStorage.setItem('userData', JSON.stringify(userData));
+      View.initialRender(userData);
+    }
+  }
+
+  static logIn(user: User, e: MouseEvent) {
+    const userNameInput = (<HTMLInputElement>(
+      document.getElementById('userName')
+    )).value;
+
+    if (userNameInput.length != 0 && userNameInput == user.name) {
+      e.preventDefault();
+      View.toggleHidden(form, mainPage);
+      View.initialRender(user);
+    }
+  }
+
+  static clickBurger(user: User): void {
     user.burgers += 1;
     user.money += 25;
     View.updateBurger(user);
   }
 
   static clickCard(card, i) {
-    View.renderCardInfo(card, i)
+    View.renderCardInfo(card, i);
   }
 
   static changeSumPrice(i: number) {
-    View.updateSumPrice(i)
+    View.updateSumPrice(i);
+  }
+
+  static updateUserInfo(items, i) {
+    // user.money -=
   }
 
   static save(user: User) {
