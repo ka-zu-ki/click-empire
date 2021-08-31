@@ -9,10 +9,12 @@ export default class Controller {
   static startGame() {
     start.addEventListener('click', (e) => {
       this.signIn(e);
+      this.timer(user)
     });
 
     login.addEventListener('click', (e) => {
       this.logIn(user, e);
+      this.timer(user)
     });
   }
 
@@ -41,6 +43,15 @@ export default class Controller {
       View.toggleHidden(form, mainPage);
       View.initialRender(user);
     }
+  }
+
+  static timer(user: User) {
+    setInterval(() => {
+      user.days++
+      console.log(user.days)
+      View.updateDays(user)
+      if(user.days % 365 == 0) user.age++
+    }, 1000)
   }
 
   static clickBurger(user: User): void {

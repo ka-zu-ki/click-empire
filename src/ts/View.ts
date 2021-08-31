@@ -44,7 +44,7 @@ export default class View {
 
     userName.innerHTML = `${user.name}`;
     age.innerHTML = `${user.age} years old`;
-    days.innerHTML = `${user.days.toLocaleString()}`;
+    days.innerHTML = `${user.days} days`;
     money.innerHTML = `${user.money.toLocaleString()}`;
 
     // burgerInfo
@@ -128,6 +128,11 @@ export default class View {
     burger.innerHTML = `${user.burgers} Burgers`;
     money.innerHTML = '';
     money.innerHTML = `${user.money.toLocaleString()}`;
+  }
+
+  static updateDays(user: User) {
+    const days = document.querySelector('#days');
+    days.innerHTML = `${user.days.toLocaleString()} days`
   }
 
   static toggleHidden(add: HTMLElement, remove: HTMLElement) {
