@@ -1,7 +1,7 @@
 import Controller from './Controller';
 import User from './User';
 import { items } from './Item';
-import { cards, cardInfo, user, mainPage, form } from './config';
+import { cards, cardInfo } from './config';
 
 export default class View {
   static initialRender(user: User) {
@@ -32,7 +32,7 @@ export default class View {
     const cardList = document.querySelectorAll('#card');
     cardList.forEach((card, i) => {
       card.addEventListener('click', () => {
-        Controller.clickCard(card, i);
+        Controller.clickCard(card, i, user);
       });
     });
 
@@ -57,7 +57,7 @@ export default class View {
     });
   }
 
-  static renderCardInfo(card, i) {
+  static renderCardInfo(card: Element, i: number, user: User) {
     // cardInfo
     cards.classList.add('hidden');
     cardInfo.classList.remove('hidden');
@@ -108,7 +108,7 @@ export default class View {
     const btnBuy = document.getElementById('btnBuy');
     btnBuy.addEventListener('click', () => {
       this.toggleHidden(cardInfo, cards);
-      Controller.updateUserInfo(i);
+      Controller.updateUserInfo(i, user);
       this.initialRender(user);
     });
   }

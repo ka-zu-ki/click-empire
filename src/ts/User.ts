@@ -8,7 +8,17 @@ export default class User {
     public purchaseItem: object
   ) {}
 
-  static updateUser(user: User) {
+  static getUser() {
+    const user = JSON.parse(localStorage.getItem('userData'))
+    return user
+  }
+
+  static saveUser(user: User) {
     localStorage.setItem('userData', JSON.stringify(user))
+    return this.getUser()
+  }
+
+  static removeUser(user: User) {
+    localStorage.removeItem('userData')
   }
 }
