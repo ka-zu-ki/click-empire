@@ -75,7 +75,6 @@ export default class Controller {
   static clickBurger(user: User): void {
     user.burgers++;
     user.money += user.perBurgerIncome;
-    User.saveUser(user);
     View.updateBurger(user);
   }
 
@@ -132,6 +131,18 @@ export default class Controller {
         user.perBurgerIncome += 25 * itemAmount;
         break;
     }
+  }
+
+  static reset() {
+    this.stopTimer();
+
+    const name = User.getUser().name
+    User.removeUser(User.getUser())
+
+    const userData = new User(name, 25, 0, 50000, 0, 0, 25, items);
+    const newUser = User.saveUser(userData)
+    View.initialRender(newUser)
+    this.timer(newUser)
   }
 
   static save() {
