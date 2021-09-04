@@ -1,3 +1,12 @@
-import Controller from './Controller'
+import Controller from './Controller';
 
-Controller.startGame()
+import { user, createUser } from './config';
+
+Controller.startGame();
+
+const saveIcon = document.getElementById('save');
+saveIcon.addEventListener('click', () => {
+  Controller.save(user)
+});
+
+console.log(createUser)

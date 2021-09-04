@@ -9,12 +9,12 @@ export default class Controller {
   static startGame() {
     start.addEventListener('click', (e) => {
       this.signIn(e);
-      this.timer(user)
+      this.timer(user);
     });
 
     login.addEventListener('click', (e) => {
       this.logIn(user, e);
-      this.timer(user)
+      this.timer(user);
     });
   }
 
@@ -26,9 +26,10 @@ export default class Controller {
     if (userNameInput.length != 0) {
       e.preventDefault();
       View.toggleHidden(form, mainPage);
-
       const userData = new User(userNameInput, 25, 0, 50000, 0, items);
-      localStorage.setItem('userData', JSON.stringify(userData));
+      User.updateUser(user)
+      console.log(userData)
+      
       View.initialRender(userData);
     }
   }
@@ -47,16 +48,20 @@ export default class Controller {
 
   static timer(user: User) {
     setInterval(() => {
-      user.days++
-      console.log(user.days)
-      View.updateDays(user)
-      if(user.days % 365 == 0) user.age++
-    }, 1000)
+      user.days++;
+      View.updateDays(user);
+      if (user.days % 365 == 0) {
+        user.age++;
+        View.updateAge(user);
+      }
+      User.updateUser(user)
+    }, 1000);
   }
 
-  static clickBurger(user: User): void {
-    user.burgers += 1;
+  static clickBurger(createUser: User): void {
+    createUser.burgers++;
     user.money += 25;
+    console.log(user.burgers)
     View.updateBurger(user);
   }
 
@@ -65,16 +70,18 @@ export default class Controller {
   }
 
   static changeSumPrice(i: number, count: number) {
-    items[i].sumPrice = (count * items[i].price);
-    items[i].purchaseAmount = count
+    items[i].sumPrice = count * items[i].price;
+    items[i].purchaseAmount = count;
     View.updateSumPrice(i);
   }
 
   static updateUserInfo(i: number) {
-    user.money += items[i].sumPrice
+    user.money += items[i].sumPrice;
   }
 
-  static save(user: User) {
+  static save(createUser: User) {
+    console.log(createUser);
     localStorage.setItem('userData', JSON.stringify(user));
+    View.toggleHidden(mainPage, form);
   }
 }

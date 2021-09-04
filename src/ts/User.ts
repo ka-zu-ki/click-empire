@@ -7,4 +7,8 @@ export default class User {
     public burgers: number,
     public purchaseItem: object
   ) {}
+
+  static updateUser(user: User) {
+    localStorage.setItem('userData', JSON.stringify(user))
+  }
 }

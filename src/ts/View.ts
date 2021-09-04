@@ -1,7 +1,7 @@
 import Controller from './Controller';
 import User from './User';
 import { items } from './Item';
-import { cards, cardInfo, user } from './config';
+import { cards, cardInfo, user, mainPage, form } from './config';
 
 export default class View {
   static initialRender(user: User) {
@@ -55,12 +55,6 @@ export default class View {
     img.addEventListener('click', () => {
       Controller.clickBurger(user);
     });
-
-    // save
-    const saveIcon = document.getElementById('save');
-    saveIcon.addEventListener('click', () => {
-      Controller.save(user);
-    });
   }
 
   static renderCardInfo(card, i) {
@@ -86,9 +80,13 @@ export default class View {
         </div>
         <p class="mt-5">How Many would you like to purchase?</p>
         <form action="post">
-          <input type="number" id="amount" class="text-black w-full rounded" value="0" min="0" max="${items[i].max}">
+          <input type="number" id="amount" class="text-black w-full rounded" value="0" min="0" max="${
+            items[i].max
+          }">
         </form>
-        <p id="sumPrice" class="mt-3 flex justify-end">Total: ${items[i].sumPrice.toLocaleString()}</p>
+        <p id="sumPrice" class="mt-3 flex justify-end">Total: ${items[
+          i
+        ].sumPrice.toLocaleString()}</p>
         <div class="grid grid-cols-2 gap-2 mt-3">
           <div id="btnBack" class="bg-white text-blue-500 w-full h-10 flex justify-center items-center">Go Back</div>
           <div id="btnBuy" class="bg-blue-700 text-white w-full h-10 flex justify-center items-center">Purchase</div>
@@ -99,20 +97,20 @@ export default class View {
     const amountElement = cardInfo.querySelector('#amount');
     amountElement.addEventListener('change', () => {
       const count = Number((<HTMLInputElement>amountElement).value);
-      Controller.changeSumPrice(i, count)
-    })
+      Controller.changeSumPrice(i, count);
+    });
 
     const btnBack = document.getElementById('btnBack');
     btnBack.addEventListener('click', () => {
-      this.toggleHidden(cardInfo, cards)
+      this.toggleHidden(cardInfo, cards);
     });
 
     const btnBuy = document.getElementById('btnBuy');
     btnBuy.addEventListener('click', () => {
-      this.toggleHidden(cardInfo, cards)
-      Controller.updateUserInfo(i)
-      this.initialRender(user)
-    })
+      this.toggleHidden(cardInfo, cards);
+      Controller.updateUserInfo(i);
+      this.initialRender(user);
+    });
   }
 
   static updateSumPrice(i: number) {
@@ -124,15 +122,19 @@ export default class View {
     const burger = document.getElementById('burger');
     const money = document.getElementById('money');
 
-    burger.innerHTML = '';
     burger.innerHTML = `${user.burgers} Burgers`;
-    money.innerHTML = '';
     money.innerHTML = `${user.money.toLocaleString()}`;
+    console.log(`burger: ${user.burgers}`);
   }
 
   static updateDays(user: User) {
     const days = document.querySelector('#days');
-    days.innerHTML = `${user.days.toLocaleString()} days`
+    days.innerHTML = `${user.days.toLocaleString()} days`;
+  }
+
+  static updateAge(user: User) {
+    const age = document.querySelector('#age');
+    age.innerHTML = `${user.age} years old`;
   }
 
   static toggleHidden(add: HTMLElement, remove: HTMLElement) {
