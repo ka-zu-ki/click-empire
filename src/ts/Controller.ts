@@ -109,10 +109,22 @@ export default class Controller {
 
   // itemごとのロジック
   static itemPerPrice(user: User, i: number) {
-    const itemAmount = user.purchaseItem[i].purchaseAmount
-    const itemPerPrice = user.purchaseItem[i].perPrice
+    const item = user.purchaseItem[i]
+    const itemAmount = item.purchaseAmount
+    const itemPerPrice = item.perPrice
 
-    user.perIncome += itemAmount * itemPerPrice
+    switch(item.type) {
+      case('realEstate'): {
+        user.perIncome += itemAmount * itemPerPrice
+        break
+      }
+      case('stock'): {
+
+      }
+      case('ability'): {
+        
+      }
+    }
   }
 
   static save() {
