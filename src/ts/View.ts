@@ -1,6 +1,7 @@
 import Controller from './Controller';
+
 import User from './User';
-import { items } from './Item';
+
 import { cards, cardInfo, perBurgerIncome } from './config';
 
 export default class View {
@@ -50,6 +51,7 @@ export default class View {
     // burgerInfo
     const img = document.getElementById('img');
     const burger = document.getElementById('burger');
+
     burger.innerHTML = `${user.burgers} Burgers`;
     perBurgerIncome.innerHTML = `$${user.perBurgerIncome} per second`
 
