@@ -1,7 +1,7 @@
 import Controller from './Controller';
 import User from './User';
 import { items } from './Item';
-import { cards, cardInfo } from './config';
+import { cards, cardInfo, perBurgerIncome } from './config';
 
 export default class View {
   static initialRender(user: User) {
@@ -51,6 +51,7 @@ export default class View {
     const img = document.getElementById('img');
     const burger = document.getElementById('burger');
     burger.innerHTML = `${user.burgers} Burgers`;
+    perBurgerIncome.innerHTML = `$${user.perBurgerIncome} per second`
 
     img.addEventListener('click', () => {
       Controller.clickBurger(user);
@@ -65,15 +66,15 @@ export default class View {
       <div>
         <div class="flex justify-between items-center">
           <div>
-            <h2 class="text-2xl">${items[i].name}</h2>
-            <p>Max Purchases: ${items[i].max}</p>
-            <p>Price: $${items[i].price}</p>
-            <p>Get ${items[i].perPrice} extra yen per second</p>
+            <h2 class="text-2xl">${user.purchaseItem[i].name}</h2>
+            <p>Max Purchases: ${user.purchaseItem[i].max}</p>
+            <p id="itemPrice">Price: $${user.purchaseItem[i].price}</p>
+            <p>Get ${user.purchaseItem[i].perPrice} extra yen per second</p>
           </div>
           <div class="w-2/4 h-28 flex justify-center">
             <img
               id="img"
-              src=${items[i].imgUrl}
+              src=${user.purchaseItem[i].imgUrl}
               class="h-full"
             />
           </div>
@@ -81,12 +82,10 @@ export default class View {
         <p class="mt-5">How Many would you like to purchase?</p>
         <form action="post">
           <input type="number" id="amount" class="text-black w-full rounded" value="0" min="0" max="${
-            items[i].max
+            user.purchaseItem[i].max
           }">
         </form>
-        <p id="sumPrice" class="mt-3 flex justify-end">Total: ${items[
-          i
-        ].sumPrice.toLocaleString()}</p>
+        <p id="sumPrice" class="mt-3 flex justify-end">Total: ${user.purchaseItem[i].sumPrice.toLocaleString()}</p>
         <div class="grid grid-cols-2 gap-2 mt-3">
           <div id="btnBack" class="bg-white text-blue-500 w-full h-10 flex justify-center items-center">Go Back</div>
           <div id="btnBuy" class="bg-blue-700 text-white w-full h-10 flex justify-center items-center">Purchase</div>
@@ -97,7 +96,7 @@ export default class View {
     const amountElement = cardInfo.querySelector('#amount');
     amountElement.addEventListener('change', () => {
       const count = Number((<HTMLInputElement>amountElement).value);
-      Controller.changeSumPrice(i, count);
+      Controller.changeSumPrice(i, count, user);
     });
 
     const btnBack = document.getElementById('btnBack');
@@ -107,14 +106,15 @@ export default class View {
 
     const btnBuy = document.getElementById('btnBuy');
     btnBuy.addEventListener('click', () => {
+      const count = Number((<HTMLInputElement>amountElement).value);
       this.toggleHidden(cardInfo, cards);
-      Controller.updateUserInfo(i, user);
+      Controller.updateUserInfo(i, user, count);
     });
   }
 
-  static updateSumPrice(i: number) {
-    const sumPrice = cardInfo.querySelector('#sumPrice');
-    sumPrice.innerHTML = `Total: $${items[i].sumPrice.toLocaleString()}`;
+  static updateSumPrice(sumPrice: number) {
+    const sumPriceElement = cardInfo.querySelector('#sumPrice');
+    sumPriceElement.innerHTML = `Total: $${sumPrice.toLocaleString()}`;
   }
 
   static updateBurger(user: User) {

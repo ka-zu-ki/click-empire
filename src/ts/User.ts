@@ -8,6 +8,7 @@ export default class User {
     public money: number,
     public perIncome: number,
     public burgers: number,
+    public perBurgerIncome: number,
     public purchaseItem: Item[]
   ) {}
 

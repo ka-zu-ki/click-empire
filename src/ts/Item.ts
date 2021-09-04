@@ -46,7 +46,7 @@ const items: Item[] = [
     'Coffee Stand',
     1000,
     30000,
-    30,
+    120,
     'https://cdn.pixabay.com/photo/2016/07/26/16/12/kaffeerad-1543158_1280.jpg',
     0,
     0,
