@@ -4,6 +4,7 @@ export default class User {
     public age: number,
     public days: number,
     public money: number,
+    public perIncome: number,
     public burgers: number,
     public purchaseItem: object
   ) {}

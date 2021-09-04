@@ -29,7 +29,7 @@ export default class Controller {
     if (userNameInput.length != 0) {
       e.preventDefault();
       View.toggleHidden(form, mainPage);
-      const userData = new User(userNameInput, 25, 0, 50000, 0, items);
+      const userData = new User(userNameInput, 25, 0, 50000, 0, 0, items);
       const user = User.saveUser(userData)
       console.log(user)
       
@@ -57,6 +57,7 @@ export default class Controller {
   static timer(user: User) {
     this.intervalId = setInterval(() => {
       user.days++;
+      user.money += user.perIncome
       View.updateDays(user);
       if (user.days % 365 == 0) {
         user.age++;
@@ -89,8 +90,15 @@ export default class Controller {
 
   static updateUserInfo(i: number, user: User) {
     user.money += items[i].sumPrice;
-    User.saveUser(user)
-    console.log(user)
+    user.purchaseItem[i].purchaseAmount += items[i].purchaseAmount
+    this.itemPerPrice(user, i)
+  }
+
+  static itemPerPrice(user: User, i: number) {
+    const itemAmount = user.purchaseItem[i].purchaseAmount
+    const itemPerPrice = user.purchaseItem[i].perPrice
+
+    user.perIncome += itemAmount * itemPerPrice
   }
 
   static save() {

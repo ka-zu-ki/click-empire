@@ -15,7 +15,7 @@ const items: Item[] = [
     'House',
     100,
     30000,
-    30,
+    32000,
     'https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_1280.jpg',
     0,
     0

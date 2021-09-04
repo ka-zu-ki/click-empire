@@ -1,5 +1,4 @@
 import Controller from './Controller';
-import User from './User';
 
 Controller.startGame();
 
