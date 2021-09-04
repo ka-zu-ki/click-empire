@@ -137,6 +137,11 @@ export default class View {
     age.innerHTML = `${user.age} years old`;
   }
 
+  static updateMoney(user: User) {
+    const money = document.querySelector('#money');
+    money.innerHTML = `${user.money.toLocaleString()}`;
+  }
+
   static toggleHidden(add: HTMLElement, remove: HTMLElement) {
     add.classList.add('hidden');
     remove.classList.remove('hidden');

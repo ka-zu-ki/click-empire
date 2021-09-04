@@ -59,6 +59,7 @@ export default class Controller {
       user.days++;
       user.money += user.perIncome
       View.updateDays(user);
+      View.updateMoney(user)
       if (user.days % 365 == 0) {
         user.age++;
         View.updateAge(user);
@@ -94,6 +95,7 @@ export default class Controller {
     this.itemPerPrice(user, i)
   }
 
+  // itemごとのロジック
   static itemPerPrice(user: User, i: number) {
     const itemAmount = user.purchaseItem[i].purchaseAmount
     const itemPerPrice = user.purchaseItem[i].perPrice
