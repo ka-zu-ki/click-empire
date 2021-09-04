@@ -90,9 +90,20 @@ export default class Controller {
   }
 
   static updateUserInfo(i: number, user: User) {
-    user.money += items[i].sumPrice;
-    user.purchaseItem[i].purchaseAmount += items[i].purchaseAmount
-    this.itemPerPrice(user, i)
+    items[i].sumPrice = 0
+    View.updateSumPrice(i)
+
+    if (user.money >= items[i].price * items[i].purchaseAmount) {
+      user.money -= items[i].sumPrice;
+      View.updateMoney(user)
+
+      user.purchaseItem[i].purchaseAmount += items[i].purchaseAmount
+      this.itemPerPrice(user, i)
+
+      View.initialRender(user);
+    } else {
+      window.alert("購入金額が足りません")
+    }
   }
 
   // itemごとのロジック

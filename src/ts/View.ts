@@ -7,7 +7,7 @@ export default class View {
   static initialRender(user: User) {
     // cards
     let cardContainer = `<div>`;
-    items.map((item) => {
+    user.purchaseItem.map((item) => {
       cardContainer += `
         <div id="card" class="grid gap grid-cols-4 mb-1 gap-1 bg-gray-600">
           <div class="h-20 p-1">
@@ -109,7 +109,6 @@ export default class View {
     btnBuy.addEventListener('click', () => {
       this.toggleHidden(cardInfo, cards);
       Controller.updateUserInfo(i, user);
-      this.initialRender(user);
     });
   }
 

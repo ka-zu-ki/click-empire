@@ -1,3 +1,5 @@
+import { Item } from "./Item"
+
 export default class User {
   constructor(
     public name: string,
@@ -6,7 +8,7 @@ export default class User {
     public money: number,
     public perIncome: number,
     public burgers: number,
-    public purchaseItem: object
+    public purchaseItem: Item[]
   ) {}
 
   static getUser() {
