@@ -25,7 +25,7 @@ gulp.task('webpack', () => {
 task('browser-sync', () => {
   return browserSync.init({
     server: {
-      baseDir: './',
+      baseDir: './public/',
       index: 'index.html',
     },
     port: 3000,
@@ -41,7 +41,7 @@ task('reload', (done) => {
 
 //watch
 task('watch', (done) => {
-  watch('./index.html', series('reload'));
+  watch('./public/index.html', series('reload'));
   watch(paths.ts, series('webpack', 'reload'));
   done();
 });
