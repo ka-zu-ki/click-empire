@@ -21,7 +21,7 @@
   },
   "scripts": {
     "gulp": "gulp",
-    "dev": "TAILWIND_MODE=watch postcss build src/style.css -o dist/style.css -w",
-    "build": "postcss build src/style.css -o dist/style.css NODE_ENV=production"
+    "dev": "TAILWIND_MODE=watch postcss build src/style.css -o public/style.css -w",
+    "build": "postcss build src/style.css -o public/style.css NODE_ENV=production build --output public"
   }
 }

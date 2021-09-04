@@ -22,13 +22,11 @@ module.exports = {
   // 記載したほうがトラブルに巻き込まれにくい。
   resolve: {
     // 拡張子を配列で指定
-    extensions: [
-      '.ts', '.js',
-    ],
+    extensions: ['.ts', '.js'],
   },
 
   output: {
-    path: __dirname + '/dist/',
-    filename: "main.js"
-  }
+    path: __dirname + '/public/',
+    filename: 'main.js',
+  },
 };

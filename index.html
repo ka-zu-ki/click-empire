@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Click Empire</title>
-    <link rel="stylesheet" href="./dist/style.css" />
+    <link rel="stylesheet" href="./public/style.css" />
     <script
       defer
       src="node_modules/@fortawesome/fontawesome-free/js/brands.min.js"
@@ -20,7 +20,20 @@
     ></script>
   </head>
   <body>
-    <div id="form" class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div
+      id="form"
+      class="
+        min-h-screen
+        flex
+        items-center
+        justify-center
+        bg-gray-50
+        py-12
+        px-4
+        sm:px-6
+        lg:px-8
+      "
+    >
       <div class="max-w-md w-full space-y-8">
         <div>
           <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -31,14 +44,86 @@
           <div class="rounded-md shadow-sm -space-y-px">
             <div>
               <label for="user-name" class="sr-only">User name</label>
-              <input id="userName" name="userName" type="text" autocomplete="name" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="User name">
+              <input
+                id="userName"
+                name="userName"
+                type="text"
+                autocomplete="name"
+                required
+                class="
+                  appearance-none
+                  rounded-none
+                  relative
+                  block
+                  w-full
+                  px-3
+                  py-2
+                  border border-gray-300
+                  placeholder-gray-500
+                  text-gray-900
+                  focus:outline-none
+                  focus:ring-indigo-500
+                  focus:border-indigo-500
+                  focus:z-10
+                  sm:text-sm
+                "
+                placeholder="User name"
+              />
             </div>
           </div>
           <div class="grid grid-cols-2 gap-2">
-            <button id="startGameBtn" type="submit" class="btn group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <button
+              id="startGameBtn"
+              type="submit"
+              class="
+                btn
+                group
+                relative
+                w-full
+                flex
+                justify-center
+                py-2
+                px-4
+                border border-transparent
+                text-sm
+                font-medium
+                rounded-md
+                text-white
+                bg-indigo-600
+                hover:bg-indigo-700
+                focus:outline-none
+                focus:ring-2
+                focus:ring-offset-2
+                focus:ring-indigo-500
+              "
+            >
               New Game
             </button>
-            <button id="loginBtn" type="submit" class="btn group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <button
+              id="loginBtn"
+              type="submit"
+              class="
+                btn
+                group
+                relative
+                w-full
+                flex
+                justify-center
+                py-2
+                px-4
+                border border-transparent
+                text-sm
+                font-medium
+                rounded-md
+                text-white
+                bg-indigo-600
+                hover:bg-indigo-700
+                focus:outline-none
+                focus:ring-2
+                focus:ring-offset-2
+                focus:ring-indigo-500
+              "
+            >
               Login
             </button>
           </div>
@@ -46,7 +131,18 @@
       </div>
     </div>
     <div
-      id="mainPage" class="bg-gray-600 h-50 w-screen mt-5 mb-5 p-5 grid grid-cols-2 gap-3 hidden"
+      id="mainPage"
+      class="
+        bg-gray-600
+        h-50
+        w-screen
+        mt-5
+        mb-5
+        p-5
+        grid grid-cols-2
+        gap-3
+        hidden
+      "
     >
       <div class="bg-gray-400 p-3">
         <div
@@ -70,15 +166,30 @@
       </div>
       <div class="flex flex-col">
         <div class="bg-gray-400 h-24 grid grid-cols-2 gap-1 p-2 text-white">
-          <div id="name" class="bg-gray-600 flex justify-center items-center"></div>
-          <div id="age" class="bg-gray-600 flex justify-center items-center"></div>
-          <div id="days" class="bg-gray-600 flex justify-center items-center"></div>
-          <div id="money" class="bg-gray-600 flex justify-center items-center"></div>
+          <div
+            id="name"
+            class="bg-gray-600 flex justify-center items-center"
+          ></div>
+          <div
+            id="age"
+            class="bg-gray-600 flex justify-center items-center"
+          ></div>
+          <div
+            id="days"
+            class="bg-gray-600 flex justify-center items-center"
+          ></div>
+          <div
+            id="money"
+            class="bg-gray-600 flex justify-center items-center"
+          ></div>
         </div>
         <div id="cardContainer" class="bg-gray-400 mt-5 p-3">
           <div id="cards" class="text-white h-72 overflow-auto"></div>
-          
-          <div id="cardInfo" class="h-72 bg-gray-600 text-white p-3 hidden"></div>
+
+          <div
+            id="cardInfo"
+            class="h-72 bg-gray-600 text-white p-3 hidden"
+          ></div>
         </div>
         <div class="flex justify-end mt-3">
           <div
@@ -114,6 +225,6 @@
       </div>
     </div>
 
-    <script src="./dist/main.js"></script>
+    <script src="./public/main.js"></script>
   </body>
 </html>

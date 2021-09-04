@@ -7,9 +7,9 @@ const webpack = require('webpack');
 const { watch, series, task, parallel } = require('gulp');
 
 const paths = {
-  root: './dist/',
+  root: './public/',
   html: './',
-  js: './dist',
+  js: './public',
   ts: './src/ts/*.ts',
 };
 
@@ -18,7 +18,7 @@ gulp.task('webpack', () => {
     .on('error', function (e) {
       this.emit('end');
     })
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('public'));
 });
 
 // browser-sync
