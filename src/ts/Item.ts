@@ -13,16 +13,6 @@ class Item {
 
 const items: Item[] = [
   new Item(
-    'House',
-    100,
-    30000,
-    32000,
-    'https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_1280.jpg',
-    0,
-    0,
-    'realEstate'
-  ),
-  new Item(
     'Flip machine',
     500,
     15000,
@@ -43,11 +33,31 @@ const items: Item[] = [
     'stock'
   ),
   new Item(
+    'ETF Bonds',
+    1000,
+    300000,
+    0.07,
+    'https://cdn.pixabay.com/photo/2017/10/26/17/40/dollar-2891817_1280.jpg',
+    0,
+    0,
+    'stock'
+  ),
+  new Item(
     'Coffee Stand',
     1000,
     30000,
     120,
     'https://cdn.pixabay.com/photo/2016/07/26/16/12/kaffeerad-1543158_1280.jpg',
+    0,
+    0,
+    'realEstate'
+  ),
+  new Item(
+    'House',
+    100,
+    300000,
+    32000,
+    'https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_1280.jpg',
     0,
     0,
     'realEstate'

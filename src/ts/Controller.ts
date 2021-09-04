@@ -89,20 +89,23 @@ export default class Controller {
   }
 
   static updateUserInfo(i: number, user: User, count: number) {
-    if (user.money >= user.purchaseItem[i].price * count) {
-      user.purchaseItem[i].purchaseAmount += count;
-      user.money -= count * user.purchaseItem[i].price;
+    const item = user.purchaseItem[i]
+    if (user.money >= item.price * count) {
+      item.purchaseAmount += count;
+      user.money -= count * item.price;
       console.log(user);
       View.updateMoney(user);
 
       this.itemEffect(user, i);
 
       View.initialRender(user);
+    } else if (item.max < item.purchaseAmount) {
+      window.alert('最大購入数を超えています');
     } else {
       window.alert('購入金額が足りません');
     }
 
-    user.purchaseItem[i].sumPrice = 0;
+    item.sumPrice = 0;
   }
 
   // itemごとのロジック
@@ -120,6 +123,9 @@ export default class Controller {
         if (item.name == 'ETF Stock') {
           item.price += item.price * 10 / 100
           user.perIncome += 0.1 / 100 * itemPrice * itemAmount;
+          break;
+        } else if (item.name == 'ETF Bonds') {
+          user.perIncome += 0.07 / 100 * itemPrice * itemAmount;
           break;
         }
       case 'ability':
