@@ -31,13 +31,24 @@ export default class Controller {
       e.preventDefault();
       View.toggleHidden(form, mainPage);
 
-      const userData = new User(userNameInput, 25, 0, 50000, 0, 0, 25, items);
-      const user = User.saveUser(userData);
+      let user: User;
+
+      if (userNameInput == 'cheater') {
+        user = User.saveUser(
+          new User('cheater', 25, 0, 500000000, 0, 0, 25, items)
+        );
+      } else {
+        user = User.saveUser(
+          new User(userNameInput, 25, 0, 50000, 0, 0, 25, items)
+        );
+      }
       View.initialRender(user);
 
       return user;
     }
   }
+
+  static createUser(name: string) {}
 
   static logIn(e: MouseEvent) {
     const userNameInput = (<HTMLInputElement>(
@@ -92,12 +103,12 @@ export default class Controller {
   }
 
   static updateUserInfo(i: number, user: User, count: number) {
-    const item = user.purchaseItem[i]
+    const item = user.purchaseItem[i];
 
     if (user.money >= item.price * count) {
       item.purchaseAmount += count;
       user.money -= count * item.price;
-    
+
       View.updateMoney(user);
 
       this.itemEffect(user, i);
@@ -114,7 +125,7 @@ export default class Controller {
 
   static itemEffect(user: User, i: number) {
     const item = user.purchaseItem[i];
-    const itemPrice = item.price
+    const itemPrice = item.price;
     const itemAmount = item.purchaseAmount;
     const itemPerPrice = item.perPrice;
 
@@ -124,11 +135,11 @@ export default class Controller {
         break;
       case 'stock':
         if (item.name == 'ETF Stock') {
-          item.price += item.price * 10 / 100
-          user.perIncome += 0.1 / 100 * itemPrice * itemAmount;
+          item.price += (item.price * 10) / 100;
+          user.perIncome += (0.1 / 100) * itemPrice * itemAmount;
           break;
         } else if (item.name == 'ETF Bonds') {
-          user.perIncome += 0.07 / 100 * itemPrice * itemAmount;
+          user.perIncome += (0.07 / 100) * itemPrice * itemAmount;
           break;
         }
       case 'ability':
@@ -140,14 +151,14 @@ export default class Controller {
   static reset() {
     this.stopTimer();
 
-    const name = User.getUser().name
-    User.removeUser(User.getUser())
+    const name = User.getUser().name;
+    User.removeUser(User.getUser());
 
     const userData = new User(name, 25, 0, 50000, 0, 0, 25, items);
-    const newUser = User.saveUser(userData)
-    View.initialRender(newUser)
+    const newUser = User.saveUser(userData);
+    View.initialRender(newUser);
 
-    this.timer(newUser)
+    this.timer(newUser);
   }
 
   static save() {
