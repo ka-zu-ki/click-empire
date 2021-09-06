@@ -111,9 +111,8 @@ export default class Controller {
 
       View.updateMoney(user);
 
-      this.itemEffect(user, i);
-
-      View.initialRender(user);
+      this.itemEffect(user, i, count);
+      View.updatePerBurgerIncome(user, item)
     } else if (item.max < item.purchaseAmount) {
       window.alert('最大購入数を超えています');
     } else {
@@ -123,27 +122,26 @@ export default class Controller {
     item.sumPrice = 0;
   }
 
-  static itemEffect(user: User, i: number) {
+  static itemEffect(user: User, i: number, count: number) {
     const item = user.purchaseItem[i];
     const itemPrice = item.price;
-    const itemAmount = item.purchaseAmount;
     const itemPerPrice = item.perPrice;
 
     switch (item.type) {
       case 'realEstate':
-        user.perIncome += itemAmount * itemPerPrice;
+        user.perIncome += count * itemPerPrice;
         break;
       case 'stock':
         if (item.name == 'ETF Stock') {
           item.price += (item.price * 10) / 100;
-          user.perIncome += (0.1 / 100) * itemPrice * itemAmount;
+          user.perIncome += (0.1 / 100) * itemPrice * count;
           break;
         } else if (item.name == 'ETF Bonds') {
-          user.perIncome += (0.07 / 100) * itemPrice * itemAmount;
+          user.perIncome += (0.07 / 100) * itemPrice * count;
           break;
         }
       case 'ability':
-        user.perBurgerIncome += 25 * itemAmount;
+        user.perBurgerIncome += 25 * count;
         break;
     }
   }

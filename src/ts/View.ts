@@ -3,6 +3,7 @@ import Controller from './Controller';
 import User from './User';
 
 import { cards, cardInfo, perBurgerIncome } from './config';
+import { Item } from './Item';
 
 export default class View {
   static initialRender(user: User) {
@@ -125,7 +126,6 @@ export default class View {
 
     burger.innerHTML = `${user.burgers} Burgers`;
     money.innerHTML = `${user.money.toLocaleString()}`;
-    console.log(`burger: ${user.burgers}`);
   }
 
   static updateDays(user: User) {
@@ -141,6 +141,12 @@ export default class View {
   static updateMoney(user: User) {
     const money = document.querySelector('#money');
     money.innerHTML = `${user.money.toLocaleString()}`;
+  }
+
+  static updatePerBurgerIncome(user: User, item: Item) {
+    const itemAmount = document.querySelector('#itemAmount');
+    itemAmount.innerHTML = `${item.purchaseAmount}`
+    perBurgerIncome.innerHTML = `${user.perBurgerIncome} / per second`
   }
 
   static toggleHidden(add: HTMLElement, remove: HTMLElement) {
