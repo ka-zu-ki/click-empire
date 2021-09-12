@@ -1,4 +1,6 @@
 # click-empire
+## URL
+https://click-empire-opal.vercel.app/
 ## 環境設定
 ```
 $ git clone git@github.com:ka-zu-ki/click-empire.git
@@ -6,8 +8,6 @@ $ cd click-empire
 $ yarn install
 $ yarn run gulp
 ```
-## URL
-https://click-empire-fqfq20k0p-clickempire.vercel.app/
 ## ゲームルール
 ユーザーは 25 歳でファーストフード店でハンバーガーを焼く仕事からスタートします。
 ハンバーガーをひっくり返すごとに 25 円稼ぎます。
